@@ -75,8 +75,8 @@ class Frame extends Component {
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
             <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-              Content
-        </Content>
+              {children}
+            </Content>
           </Layout>
         </Layout>
       </Layout>

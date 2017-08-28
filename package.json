@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "rsuite app"
+    "url": "git@github.com:superman66/react-antd-admin.git"
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
