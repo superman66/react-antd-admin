@@ -47,6 +47,7 @@ module.exports = {
     'one-var': OFF,
     'class-methods-use-this': WARNING,
     'no-unused-expressions': [ERROR, { allowShortCircuit: true }],
+    "arrow-body-style": [ERROR, "as-needed"],
     /**
      * https://github.com/airbnb/javascript/tree/master/react
      */
@@ -66,6 +67,6 @@ module.exports = {
     'jsx-a11y/label-has-for': OFF,
     'react/jsx-filename-extension': OFF,
     'react/prefer-stateless-function': OFF,
-    'react/require-default-props':OFF
+    'react/require-default-props': OFF
   }
 };

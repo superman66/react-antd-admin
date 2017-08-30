@@ -3,7 +3,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/users';
-import { UserTable } from '../../components/Users';
+import UserTableView from '../../components/Users';
 
 
 function mapState2Props(state) {
@@ -22,4 +22,4 @@ function mapDispatch2Props(dispatch) {
   };
 }
 
-export default connect(mapState2Props, mapDispatch2Props)(UserTable);
+export default connect(mapState2Props, mapDispatch2Props)(UserTableView);
