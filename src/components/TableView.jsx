@@ -19,6 +19,7 @@ class TablveView extends Component {
       <Table
         dataSource={data}
         columns={columns}
+        {...this.props}
       />
     )
   }

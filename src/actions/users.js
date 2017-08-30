@@ -41,6 +41,7 @@ export function fetchUsers() {
         }));
       })
       .catch((error) => {
+        console.log(error);
         dispatch(fetchUsersFailure(error));
       });
   };

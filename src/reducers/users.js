@@ -3,7 +3,8 @@ import * as types from '../constants/ActionTypes';
 
 
 const initialState = {
-  data: []
+  data: [],
+  page: {}
 };
 
 export default function login(state = initialState, action) {
@@ -13,7 +14,6 @@ export default function login(state = initialState, action) {
       return {
         ...state,
         ...{
-          status: action.status,
           data: action.items || [],
           page: action.page || {}
         }
