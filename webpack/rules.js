@@ -8,7 +8,7 @@ module.exports = [
     ],
     exclude: /node_modules/
   }, {
-    test: /\.sass$/,
+    test: /\.scss$/,
     loader: extractSass.extract({
       use: [{
         loader: 'css-loader'
