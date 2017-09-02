@@ -11,10 +11,11 @@
   "license": "MIT",
   "dependencies": {
     "antd": "^2.12.6",
+    "axios": "^0.16.2",
     "classnames": ">=2.0.0",
     "intl": "^1.2.4",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.11.1",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.0",

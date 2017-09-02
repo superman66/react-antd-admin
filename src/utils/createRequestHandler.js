@@ -1,7 +1,7 @@
 export default function createRequestHandler(onSuccess) {
   return (state, action) => (
     {
-      state,
+      ...state,
       ...onSuccess(state, action)
     }
   )

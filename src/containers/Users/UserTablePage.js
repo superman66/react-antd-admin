@@ -7,7 +7,7 @@ import UserTableView from '../../components/Users';
 
 
 function mapState2Props(state) {
-  const currentState = state.store.login;
+  const currentState = state.store.user;
   return {
     status: currentState.status,
     data: currentState.data,
