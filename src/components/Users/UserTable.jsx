@@ -4,8 +4,9 @@ import TableView from '../TableView'
 
 
 const propTypes = {
-  data: PropTypes.array,
+  userList: PropTypes.array,
   page: PropTypes.object,
+  status: PropTypes.string,
   onFetchUser: PropTypes.func
 }
 
@@ -19,76 +20,50 @@ class UserTable extends Component {
     this.loadTableData();
   }
 
-  getData() {
-    const data = [];
-    for (let i = 0; i < 100; i++) {
-      data.push({
-        key: i,
-        name: `Edrward ${i}`,
-        age: 32,
-        address: `London Park no. ${i}`,
-      });
+  getTableOptions() {
+    const { page } = this.props;
+    return {
+      total: page.total || 0
     }
-    return data;
   }
+
 
   getColumns() {
     const columns = [
       {
-        title: 'Full Name',
-        width: 100,
+        title: '姓名',
+        width: 200,
         dataIndex: 'name',
-        key: 'name',
-        fixed: 'left'
+        fixed: true,
       },
       {
-        title: 'Age',
+        title: '年龄',
         width: 100,
         dataIndex: 'age',
-        key: 'age',
-        fixed: 'left'
+
       },
       {
-        title: 'Column 1',
+        title: '地址',
         dataIndex: 'address',
         key: '1',
+        sorter: true,
+        width: 300,
+      },
+      {
+        title: '联系方式',
+        dataIndex: 'phone',
         width: 150,
         sorter: true,
       },
       {
-        title: 'Column 2',
-        dataIndex: 'address',
-        key: '2',
+        title: '邮箱',
+        dataIndex: 'email',
         width: 150,
-        sorter: true,
       },
       {
-        title: 'Column 3',
-        dataIndex: 'address',
-        key: '3',
+        title: '性别',
+        dataIndex: 'gender',
         width: 150,
-        sorter: true,
-      },
-      {
-        title: 'Column 4',
-        dataIndex: 'address',
-        key: '4',
-        width: 150,
-        sorter: true,
-      },
-      {
-        title: 'Column 5',
-        dataIndex: 'address',
-        key: '5',
-        width: 150,
-        sorter: true,
-      },
-      {
-        title: 'Column 6',
-        dataIndex: 'address',
-        key: '6',
-        width: 150,
-        sorter: true,
       },
       {
         title: 'Action',
@@ -100,18 +75,20 @@ class UserTable extends Component {
     return columns;
   }
 
-  loadTableData = () => {
+  loadTableData = (params) => {
     const { onFetchUser } = this.props;
-    onFetchUser();
+    onFetchUser(params);
   }
 
   render() {
+    const { userList, status } = this.props;
     return (
       <TableView
-        data={this.getData()}
+        status={status}
+        data={userList}
+        options={this.getTableOptions()}
         loadData={this.loadTableData}
         columns={this.getColumns()}
-        scroll={{ x: 1500, y: 300 }}
       />
     )
   }

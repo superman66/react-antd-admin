@@ -5,7 +5,8 @@ import createRequestHandler from '../utils/createRequestHandler'
 import { toTable } from '../utils/actionToStore'
 
 const initialState = {
-  data: [],
+  status: null,
+  items: [],
   page: {}
 }
 

@@ -10,7 +10,7 @@ function mapState2Props(state) {
   const currentState = state.store.user;
   return {
     status: currentState.status,
-    data: currentState.data,
+    userList: currentState.items,
     page: currentState.page
   };
 }

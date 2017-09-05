@@ -10,6 +10,7 @@ import reducers from './reducers'
 import routes from './routes'
 import callAPIMiddleware from './middlewares/callAPIMiddleware'
 import { BASE_URL } from './constants/APIs'
+import './sass/main.scss'
 
 axios.defaults.baseURL = BASE_URL;
 const middlewares = [thunkMiddleware, callAPIMiddleware];
