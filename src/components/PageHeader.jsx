@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
-import { Layout, Menu } from 'antd'
+import { Layout, Icon } from 'antd'
 
 const { Header } = Layout
 
@@ -19,25 +19,16 @@ const contextTypes = {
 
 class PageHeader extends Component {
 
-  renderActiveItem(activeKey) {
-    const { activeItem } = this.props;
-    return activeItem === activeKey ? 'active' : null;
-  }
-
   render() {
+
+    const { collapsed, toggle } = this.props;
     return (
-      <Header className="header">
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-          style={{ lineHeight: '64px' }}
-        >
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
+      <Header style={{ background: '#fff', padding: 0 }}>
+        <Icon
+          className="trigger"
+          type={collapsed ? 'menu-unfold' : 'menu-fold'}
+          onClick={toggle}
+        />
       </Header>
     );
   }

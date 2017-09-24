@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'antd'
+import { Table, Pagination } from 'antd'
 
 import ReqeustStatus from '../constants/RequestStatus'
 
@@ -24,6 +24,9 @@ class TablveView extends Component {
       },
       params: {
         page: 1,
+        pageSize: 30,
+        filterColumn: '',
+        filterOrder: 'descend'
       }
     }
   }
@@ -37,43 +40,96 @@ class TablveView extends Component {
     }
   }
 
+  getParams() {
+    return this.state.params
+  }
+
+  setParams(params, callback) {
+    this.setState((prevState) => {
+      return {
+        params: { ...prevState.params, ...params }
+      }
+    }, () => {
+      callback && callback();
+    })
+  }
+
   showTotal = (total) => {
     return `Total ${total} items`
   }
 
-  handleTableChange = (pagination, filters, sorter) => {
-    console.log(pagination, filters, sorter);
+  handlePaginatiChange = (page, pageSize) => {
     this.setState((prevState) => {
       return {
-        pagination: { ...prevState.pagination, ...{ current: pagination.page } }
+        pagination: { ...prevState.pagination, ...{ current: page } }
       }
     })
     const params = {
-      page: pagination.page,
-      pageSize: pagination.pageSize
+      page,
+      pageSize
     }
-    this.loadTableData(params);
+
+    this.setParams(params, this.loadTableData)
   }
 
-  loadTableData(params) {
+  handleTableChange = (pagination, filters, sorter) => {
+    const params = {
+      filterColumn: sorter.field,
+      filterOrder: sorter.order
+    }
+
+    this.setParams(params, this.loadTableData)
+  }
+
+  handleShowSizeChange = (current, pageSize) => {
+    console.log(current, pageSize);
+    this.setState((prevState) => {
+      return {
+        pagination: { ...prevState.pagination, ...{ pageSize } }
+      }
+    })
+    const params = {
+      page: 1,
+      pageSize
+    }
+    this.setParams(params, this.loadTableData)
+  }
+
+  loadTableData = (params) => {
     const { loadData } = this.props
-    loadData(params)
+    loadData(params || this.state.params)
+  }
+
+  renderPagination() {
+    const { pagination } = this.state;
+    return (
+      <Pagination
+        className="table-pagination"
+        showSizeChanger
+        onShowSizeChange={this.handleShowSizeChange}
+        total={pagination.total}
+        showTotal={total => `Total ${total} items`}
+        pageSize={pagination.pageSize}
+        current={pagination.current}
+        defaultCurrent={1}
+        onChange={this.handlePaginatiChange}
+      />
+    );
   }
 
   render() {
-    const { pagination } = this.state;
-    const { data, columns, status, options } = this.props
+    const { data, columns, status } = this.props
     return (
       <div>
         <Table
           dataSource={data}
           columns={columns}
-          pagination={pagination}
+          pagination={false}
           loading={status === ReqeustStatus.REQUEST}
-          scroll={{ x: 1500, y: 300 }}
           onChange={this.handleTableChange}
           {...this.props}
         />
+        {this.renderPagination()}
       </div>
     )
   }

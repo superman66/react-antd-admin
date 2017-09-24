@@ -17,7 +17,7 @@ class UserTable extends Component {
   }
 
   componentDidMount() {
-    this.loadTableData();
+    this.loadTableData(this.table.getParams());
   }
 
   getTableOptions() {
@@ -40,12 +40,10 @@ class UserTable extends Component {
         title: '年龄',
         width: 100,
         dataIndex: 'age',
-
       },
       {
         title: '地址',
         dataIndex: 'address',
-        key: '1',
         sorter: true,
         width: 300,
       },
@@ -67,7 +65,6 @@ class UserTable extends Component {
       },
       {
         title: 'Action',
-        key: 'operation',
         width: 100,
         render: () => <a href="#">action</a>,
       },
@@ -81,14 +78,18 @@ class UserTable extends Component {
   }
 
   render() {
-    const { userList, status } = this.props;
+    const { userList, status, page } = this.props;
     return (
       <TableView
         status={status}
         data={userList}
+        page={page}
         options={this.getTableOptions()}
         loadData={this.loadTableData}
         columns={this.getColumns()}
+        ref={(ref) => {
+          this.table = ref
+        }}
       />
     )
   }
