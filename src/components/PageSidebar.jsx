@@ -5,6 +5,15 @@ import { Layout, Menu, Icon } from 'antd'
 const { Sider } = Layout
 const { SubMenu } = Menu
 
+
+const propTypes = {
+  collapsed: PropTypes.bool
+}
+
+const contextTypes = {
+  menus: PropTypes.array
+}
+
 class PageSidebar extends Component {
   constructor(props) {
     super(props)
@@ -12,12 +21,13 @@ class PageSidebar extends Component {
   }
 
   render() {
+    const { menus } = this.context;
     const { collapsed } = this.props;
     return (
       <Sider
         trigger={null}
         collapsible
-        collapsed={this.props.collapsed}
+        collapsed={collapsed}
       >
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
@@ -38,5 +48,8 @@ class PageSidebar extends Component {
     )
   }
 }
+
+PageSidebar.propTypes = propTypes;
+PageSidebar.contextTypes = contextTypes;
 
 export default PageSidebar

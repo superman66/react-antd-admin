@@ -15,7 +15,8 @@ const propTypes = {
 };
 
 const contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.object.isRequired,
+  menus: PropTypes.array
 };
 
 const defaultProps = {
@@ -26,7 +27,7 @@ class Frame extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: true
+      collapsed: false
     }
   }
 

@@ -4,3 +4,4 @@ export const API_CAPTCHA_JPG = 'data/captcha.jpg';  // 这里需要替换为服�
 
 // mock data
 export const API_USERS = '/users';
+export const API_MENUS = '/menus';
